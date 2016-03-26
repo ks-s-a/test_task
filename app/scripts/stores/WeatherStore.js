@@ -22,7 +22,7 @@ export default class WeatherStore extends AbstractStore {
         this
           .set('loading', true)
           .set('error', null)
-          .set('forecast', [])
+          .set('weather', {})
           .trigger('change');
       },
       /**
@@ -30,11 +30,11 @@ export default class WeatherStore extends AbstractStore {
        *
        * @param {array} items Items
        */
-      'weather:loadSuccess': forecast => {
+      'weather:loadSuccess': weather => {
         this
           .set('loading', false)
           .set('error', null)
-          .set('forecast', forecast)
+          .set('weather', weather)
           .trigger('change');
       },
       /**

@@ -10,6 +10,13 @@ function WeatherItem(props) {
     <div className="weather-item__date" >
       <span className="weather-item__day">{dateStr}</span>
     </div>
+    <div className="weather-item__image" >
+      <img src={`http://openweathermap.org/img/w/${props.weather[0].icon}.png`} />
+    </div>
+    <div className="weather-item__temp" >
+      <span>{Math.round(props.main.temp)}</span>
+      <span> °</span>
+    </div>
   </li>;
 }
 

@@ -13,13 +13,17 @@ class Weather extends AbstractComponent {
 
     this.state = {
       /**
+      * weather
+      */
+      weather : {},
+      /**
       * forecast
       */
       forecast : [],
       /**
       * Loading state
       */
-      loading: false
+      loading: false,
     };
   }
 
@@ -41,7 +45,8 @@ class Weather extends AbstractComponent {
    */
   storeChangeHandler() {
     this.setState({
-      forecast: WeatherStore.get('forecast'),
+      weather: WeatherStore.get('weather') || {},
+      forecast: WeatherStore.get('weather').list || [],
       loading: WeatherStore.get('loading'),
     });
   }
@@ -51,8 +56,6 @@ class Weather extends AbstractComponent {
    */
   componentDidMount() {
     super.componentDidMount();
-    
-    WeatherActionCreator.loadWeather();
   }
 
   /**
@@ -69,11 +72,28 @@ class Weather extends AbstractComponent {
         return <WeatherItem {...item} />
       })
 
+    const citySubmit = (e) => {
+      e.preventDefault();
+
+      const cityName = this.refs.city.value;
+      WeatherActionCreator.loadWeather(cityName);
+    };
+
     return <div className="weather" >
-        <h1 className="weather__header" >Прогноз погоды в Москве: </h1>
-        <ul className="weather__cols" >
-          {items}
-        </ul>
+        <div className="weather__city-choice" >
+          <form onSubmit={citySubmit.bind(this)} >
+            <input ref="city" className="weather__city-enter" />
+            <button type="submit">Получить</button>
+          </form>
+        </div>
+        {this.state.forecast.length ?
+          <div>
+            <h1 className="weather__header" >Прогноз погоды в {this.state.weather.city.name}: </h1>
+            <ul className="weather__cols" >
+              {items}
+            </ul>
+          </div> : ''
+        }
       </div>;
   }
 }
