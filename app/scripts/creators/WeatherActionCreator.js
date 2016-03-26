@@ -14,16 +14,13 @@ class WeatherActionCreator extends AbstractActionCreator {
   loadWeather() {
     this.dispatch('weather:loadStart');
 
-    console.log('axios is: ', axios);
-
-    // make your api call/ async stuff here
-    // we use setTimeout for faking async behaviour here
-    // setTimeout(() => {
-    //   const items = ['Foo', 'Bar', 'Baz'];
-    //   this.dispatch('weather:loadSuccess', items);
-    //   // on error
-    //   // this.dispatch('items:loadError', error);
-    // }, 500);
+    fetch('http://api.openweathermap.org/data/2.5/weather?q=Moscow,ru&appid=12e6bebc6b8d7c39f1c4946a2ccae9ee')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(weather => {
+        this.dispatch('weather:loadSuccess', weather);
+      });
   }
 }
 
