@@ -4,7 +4,6 @@
  * @exports WeatherActionCreator singleton
  */
 
-import axios from '../../bower_components/axios/dist/axios.js'
 import AbstractActionCreator from '../creators/AbstractActionCreator';
 
 class WeatherActionCreator extends AbstractActionCreator {

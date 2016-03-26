@@ -45,7 +45,7 @@ gulp.task('html', function() {
 gulp.task('styles',function(cb) {
 
   // build css styles
-  return gulp.src(app + 'sass/main.scss')
+  return gulp.src(app + 'sass/*.scss')
     .pipe($.sass())
     .pipe($.autoprefixer({browsers: autoprefixerBrowsers}))
     .pipe(gulp.dest(dist + 'css/'))

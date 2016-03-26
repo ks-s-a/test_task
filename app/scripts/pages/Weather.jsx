@@ -1,9 +1,10 @@
 import React from 'react';
 import AbstractComponent from '../components/AbstractComponent.jsx';
+import WeatherItem from '../components/WeatherItem.jsx';
 import WeatherStore from '../stores/WeatherStore';
 import WeatherActionCreator from '../creators/WeatherActionCreator';
 
-class Home extends AbstractComponent {
+class Weather extends AbstractComponent {
   /**
    * @inheritdoc
    */
@@ -58,12 +59,23 @@ class Home extends AbstractComponent {
    * @inheritdoc
    */
   render() {
-    return (
-      <div>
-        <h1>Home Page</h1>
-      </div>
-    );
+    const items = this.state.forecast
+      .filter(item => 
+        (new Date(item.dt * 1000)).getHours() === 18
+      )
+      .map((item, i) => {
+        item.key = i;
+
+        return <WeatherItem {...item} />
+      })
+
+    return <div className="weather" >
+        <h1 className="weather__header" >Прогноз погоды в Москве: </h1>
+        <ul className="weather__cols" >
+          {items}
+        </ul>
+      </div>;
   }
 }
 
-export default Home;
+export default Weather;
