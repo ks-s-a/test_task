@@ -1,7 +1,6 @@
 import React from 'react';
 import AbstractComponent from '../components/AbstractComponent.jsx';
-import ItemList from '../components/ItemList.jsx';
-import ItemStore from '../stores/ItemStore';
+import WeatherStore from '../stores/WeatherStore';
 import WeatherActionCreator from '../creators/WeatherActionCreator';
 
 class Home extends AbstractComponent {
@@ -13,9 +12,9 @@ class Home extends AbstractComponent {
 
     this.state = {
       /**
-      * Items
+      * forecast
       */
-      items : [],
+      forecast : [],
       /**
       * Loading state
       */
@@ -29,7 +28,7 @@ class Home extends AbstractComponent {
   getStoresConfig() {
     return [
       {
-        store: ItemStore,
+        store: WeatherStore,
         eventName: 'change',
         callback: this.storeChangeHandler.bind(this),
       },
@@ -37,12 +36,12 @@ class Home extends AbstractComponent {
   }
 
   /**
-   * Items store change handler
+   * Weather store change handler
    */
   storeChangeHandler() {
     this.setState({
-      items: ItemStore.get('items'),
-      loading: ItemStore.get('loading'),
+      forecast: WeatherStore.get('forecast'),
+      loading: WeatherStore.get('loading'),
     });
   }
 
@@ -62,7 +61,6 @@ class Home extends AbstractComponent {
     return (
       <div>
         <h1>Home Page</h1>
-        <ItemList { ...this.state } />
       </div>
     );
   }
