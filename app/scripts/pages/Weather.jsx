@@ -83,12 +83,12 @@ class Weather extends AbstractComponent {
         <div className="weather__city-choice" >
           <form onSubmit={citySubmit.bind(this)} >
             <input ref="city" className="weather__city-enter" />
-            <button type="submit">Получить</button>
+            <button type="submit" className="weather__get-city" >Получить</button>
           </form>
         </div>
         {this.state.forecast.length ?
           <div>
-            <h1 className="weather__header" >Прогноз погоды в {this.state.weather.city.name}: </h1>
+            <h1 className="weather__header" >{this.state.weather.city.name}</h1>
             <ul className="weather__cols" >
               {items}
             </ul>

@@ -1,9 +1,10 @@
 .weather__header {
-  font: .8em Arial, Helvetica, sans-serif;
+  font: 1.8em Arial, Helvetica, sans-serif;
+  color: #bababa;
 }
 
 .weather__cols {
-  
+
 }
 
 .weather-item {
@@ -11,5 +12,33 @@
   margin: 10px;
   width: 100px;
   height: 100px;
-  background-color: #ccc;
+  padding: 15px;
+}
+
+.weather-item:first-of-type {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.weather-item__date {
+  text-align: center;
+  color: #bababa;
+}
+
+.weather-item__day {
+
+}
+
+.weather-item__image {
+  text-align: center;
+}
+
+.weather-item__temp {
+  text-align: center;
+  color: #bababa;
+}
+
+.weather__get-city {
+  height: 24px;
+  padding-top: 0px;
 }
